@@ -1,0 +1,55 @@
+Simple Data Explorer
+========================================================
+author: Daria Lidina
+date: October, 23, 2016
+width: 960
+height: 700
+
+Application overview
+========================================================
+
+This application showcases an approach to graphical data exploration.
+
+For now it's intentionally simple - one can:
+
+- get an overview of data
+- take a look at actual data in a dataset
+- quickly try different plots to see if any interesting ideas come up
+
+Looking at data with no graphical support
+========================================================
+
+The data showcased is the 'mpg' dataset from 'ggplot2' R package.
+
+Data in the dataset is not very friendly in it's initial form, so the app provides more people-friendly representation for several cryptic values.
+
+The easiest way to get acquainted with a dataset is to look at it's summary produced by R, which is posted to a separate app's tab.
+
+Another tab allows to look at raw data.
+
+Plotting data
+========================================================
+
+One doesn't have to know how to write code to get some simple plots with the help of this app. And there are some improvements over usual 'quick and dirty' plots in terms of readability and labeling of simple graphs, making it easier to use as a conversation support tool.
+
+The app has a suggestion for the set of settings that will produce this plot, showing interesting features for further 'serious' data analysis.
+
+***
+
+```{r, echo=FALSE}
+library(ggplot2)
+source(file.path("DataExplorer", "captions.R"))
+p = ggplot(explData, aes(x = cty, y = hwy)) + 
+  geom_point() +
+  labs(x = varLabels[['cty']], y = varLabels[['hwy']]) +
+  aes(color = drv) +
+  guides(color = guide_legend(title = varLabels[['drv']])) +
+  facet_grid('. ~ year') +
+  theme(legend.position = "bottom", legend.direction = "horizontal",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+p
+```
+
+THANK YOU!
+========================================================
