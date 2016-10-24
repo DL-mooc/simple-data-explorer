@@ -1,3 +1,4 @@
+library(ggplot2)
 # shared between server and ui so that labels are consistent
 # also improves data representation
 
